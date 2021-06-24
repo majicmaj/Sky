@@ -1,0 +1,61 @@
+/* Globals */
+* {
+  box-sizing: border-box;
+  margin: 0;
+}
+
+body {
+  margin: 0;
+  --background-color: #e4e6eb;
+  --text-color: #48484a;
+  --card-color: #fff;
+  --color-primary: #225dff;
+  --color-primary-shade: #3b3eff;
+  --color-secondary: #ff6a20;
+  --color-secondary-shade: #ff3520;
+  --border-radius: 10px;
+  background: var(--background-color);
+  color: var(--text-color);
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Ubuntu,
+    Oxygen, Cantarell, "Open Sans", "Helvetica Neue", sans-serif;
+  text-align: center;
+  margin: 0 auto;
+  max-width: 1200px;
+  padding-bottom: 4rem;
+}
+::-webkit-scrollbar {
+  -webkit-appearance: none;
+  height: 8px;
+  width: 8px;
+  /* border: 1px solid red; */
+}
+::-webkit-scrollbar-thumb {
+  border-radius: 4px;
+  background-color: #99999930;
+  /* box-shadow: 0 0 1px rgba(255, 255, 255, 0.5); */
+}
+
+/* Shared Styles */
+.underlined {
+  border-bottom: 1px solid #99999930;
+  margin-bottom: 0.5rem;
+}
+.Card {
+  background: var(--card-color);
+  border-radius: var(--border-radius);
+  margin: 0.5rem 1rem;
+  padding: 1rem;
+  /* height: 100%; */
+}
+
+/* Media Queries */
+@media (prefers-color-scheme: dark) {
+  body {
+    --card-color: #16161a;
+    --background-color: #0a0a0e;
+    color: #eee;
+  }
+  button {
+    color: #eee;
+  }
+}
