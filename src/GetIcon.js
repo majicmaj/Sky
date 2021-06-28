@@ -24,28 +24,28 @@ const iconDict = {
 };
 
 const iconDictSmall = {
-  "01d": "https://i.imgur.com/lAF9QMn.png", // Clear
-  "01n": "https://i.imgur.com/SFA2fV3.png",
-  "02d": "https://i.imgur.com/vD3Q7AG.png", // Few Clouds
-  "02n": "https://i.imgur.com/z6A8QUk.png",
-  "03d": "https://i.imgur.com/jySmqqH.png", // Scatters Clouds
-  "03n": "https://i.imgur.com/jySmqqH.png",
-  "04d": "https://i.imgur.com/fjKJgZ8.png", // Broken Clouds
-  "04n": "https://i.imgur.com/fjKJgZ8.png",
-  "09d": "https://i.imgur.com/GgRLWVw.png", // Shower Rain
-  "09n": "https://i.imgur.com/GgRLWVw.png",
-  "10d": "https://i.imgur.com/uvSxUaE.png", // Rain
-  "10n": "https://i.imgur.com/DX1E7XH.png",
-  "11d": "https://i.imgur.com/oA3VxUU.png", // Thunderstorm
-  "11n": "https://i.imgur.com/oA3VxUU.png",
-  "13d": "https://i.imgur.com/hpyGDFx.png", // Snow
-  "13n": "https://i.imgur.com/r5ZTtRz.png",
-  "50d": "https://i.imgur.com/biSmT5W.png", // Mist
-  "50n": "https://i.imgur.com/biSmT5W.png",
-  high: "https://i.imgur.com/DAvnxZj.png",
-  low: "https://i.imgur.com/vSEjxHC.png",
-  sunrise: "https://i.imgur.com/2xCK2ck.png",
-  sunset: "https://i.imgur.com/qW9FZ5j.png"
+  "01d": "https://i.imgur.com/C1zpDkS.png", // Clear
+  "01n": "https://i.imgur.com/43wXZRJ.png",
+  "02d": "https://i.imgur.com/g8ynThE.png", // Few Clouds
+  "02n": "https://i.imgur.com/oa8GJC7.png",
+  "03d": "https://i.imgur.com/g4d0haV.png", // Scatters Clouds
+  "03n": "https://i.imgur.com/g4d0haV.png",
+  "04d": "https://i.imgur.com/G5IfZhx.png", // Broken Clouds
+  "04n": "https://i.imgur.com/G5IfZhx.png",
+  "09d": "https://i.imgur.com/FPVU579.png", // Shower Rain
+  "09n": "https://i.imgur.com/FPVU579.png",
+  "10d": "https://i.imgur.com/rftzxRO.png", // Rain
+  "10n": "https://i.imgur.com/DiXibVq.png",
+  "11d": "https://i.imgur.com/TiPb8to.png", // Thunderstorm
+  "11n": "https://i.imgur.com/TiPb8to.png",
+  "13d": "https://i.imgur.com/aivcjJ9.png", // Snow
+  "13n": "https://i.imgur.com/1NH3d8g.png",
+  "50d": "https://i.imgur.com/DieNLs4.png", // Mist
+  "50n": "https://i.imgur.com/DieNLs4.png",
+  high: "https://i.imgur.com/0pjLUo6.png",
+  low: "https://i.imgur.com/EI1djFI.png",
+  sunrise: "https://i.imgur.com/td5C4TB.png",
+  sunset: "https://i.imgur.com/8yoMV8Z.png"
 };
 
 export const getIcon = (icon, small = false) => {
