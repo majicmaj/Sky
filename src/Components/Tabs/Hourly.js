@@ -121,6 +121,14 @@ const Hourly = (props) => {
         borderColor: "#529bf5"
       },
       {
+        label: "UVI",
+        data: getData("uvi")?.map((p) => p * 100),
+        fill: false,
+        // hidden: true,
+        backgroundColor: "#5b12eb",
+        borderColor: "#5b12eb"
+      },
+      {
         label: "Rain",
         data: data?.map((h) => h?.rain?.["1h"] || 0),
         fill: false,
