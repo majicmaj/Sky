@@ -34,9 +34,8 @@ const HeaderBar = styled.header`
   width: max-content;
   /* border: 1px solid red; */
   /* margin: 0 auto; */
-  padding: 0.5rem;
+  padding: 1rem 0.5rem;
   margin-bottom: 0.5rem;
-  padding-top: 1rem;
   width: 100%;
   position: sticky;
   top: 0;

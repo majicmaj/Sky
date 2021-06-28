@@ -1,5 +1,5 @@
 import { StrictMode } from "react";
-import * as ServiceWorker from "../public/ServiceWorker";
+import * as ServiceWorker from "./ServiceWorker";
 import ReactDOM from "react-dom";
 
 import App from "./App";

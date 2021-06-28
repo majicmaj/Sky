@@ -122,7 +122,7 @@ const Hourly = (props) => {
       },
       {
         label: "UVI",
-        data: getData("uvi")?.map((p) => p * 100),
+        data: getData("uvi")?.map((p) => p * 10),
         fill: false,
         // hidden: true,
         backgroundColor: "#5b12eb",
