@@ -27,7 +27,7 @@ const HighLow = ({ data, daily, hourly }) => (
         {data?.rain?.["1h"] && (
           <div>
             <TextMid>Rain</TextMid>
-            <SmlImage alt="weather icon" src={getIcon("09d")} />
+            <SmlImage alt="weather icon" src={getIcon("09d", true)} />
             <TextMid>
               <strong>{data.rain["1h"]}</strong>
               <SpanSml>mm</SpanSml>
@@ -38,7 +38,7 @@ const HighLow = ({ data, daily, hourly }) => (
           <TextMid>Next Hour</TextMid>
           <SmlImage
             alt="weather icon"
-            src={getIcon(hourly[1].weather[0].icon)}
+            src={getIcon(hourly[1].weather[0].icon, true)}
           />
           <TextMid>
             <strong>{hourly[1].weather[0].main}</strong>
@@ -46,21 +46,21 @@ const HighLow = ({ data, daily, hourly }) => (
         </div>
         <div>
           <TextMid>High</TextMid>
-          <SmlImage src={getIcon("high")} alt="high" />
+          <SmlImage src={getIcon("high", true)} alt="high" />
           <TextMid>
             <strong>{Math.round(daily[0].temp.max)}°</strong>{" "}
           </TextMid>
         </div>
         <div>
           <TextMid>Low</TextMid>
-          <SmlImage src={getIcon("low")} alt="low" />
+          <SmlImage src={getIcon("low", true)} alt="low" />
           <TextMid>
             <strong> {Math.round(daily[0].temp.min)}°</strong>
           </TextMid>
         </div>
         <div>
           <TextMid>Sunrise</TextMid>
-          <SmlImage src={getIcon("sunrise")} alt="sunrise" />
+          <SmlImage src={getIcon("sunrise", true)} alt="sunrise" />
           <TextMid>
             <strong>
               {new Date(data.sunrise * 1000).toLocaleTimeString([], {
@@ -72,7 +72,7 @@ const HighLow = ({ data, daily, hourly }) => (
         </div>
         <div>
           <TextMid>Sunset</TextMid>
-          <SmlImage src={getIcon("sunset")} alt="sunset" />
+          <SmlImage src={getIcon("sunset", true)} alt="sunset" />
           <TextMid>
             <strong>
               {new Date(data.sunset * 1000).toLocaleTimeString([], {

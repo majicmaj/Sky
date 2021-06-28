@@ -189,7 +189,7 @@ const Hourly = (props) => {
             })}
         </p>
         <div>
-          <SmlImage src={getIcon(hour.weather[0].icon)} alt="weather" />
+          <SmlImage src={getIcon(hour.weather[0].icon, true)} alt="weather" />
         </div>
         {/* <p>{hour.weather[0].main} </p> */}
         <p>

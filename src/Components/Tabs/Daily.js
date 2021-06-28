@@ -127,7 +127,7 @@ const Daily = (props) => {
               })}
           </p>
           <div>
-            <SmlImage src={getIcon(day.weather[0].icon)} alt="weather" />
+            <SmlImage src={getIcon(day.weather[0].icon, true)} alt="weather" />
           </div>
           {/* <p>{day.weather[0].main} </p> */}
           <p>{Math.round(day.temp.max)}°</p>
