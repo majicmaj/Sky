@@ -92,7 +92,6 @@ export default function App() {
   React.useEffect(() => {
     if (!places[placeIndex]?.location) return;
     setLocation(places[placeIndex].location);
-    console.log(location);
   }, [placeIndex]);
 
   return (
