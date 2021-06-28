@@ -8,103 +8,92 @@ import pollution from "./data/pollution.json";
 import geo from "./data/geo.json";
 import "./styles.css";
 import { BrowserRouter as Router } from "react-router-dom";
+// import useStickyState from "./Hooks/UseStickyState";
 
 // DEV MODE TOGGLE
 let dev = false;
-dev = true;
+// dev = true;
+
+const options = {
+  enableHighAccuracy: true,
+  timeout: 5000,
+  maximumAge: 0
+};
+const devData = {
+  weather: weather,
+  astro: astro,
+  pollution: pollution,
+  geo: geo
+};
 
 export default function App() {
   const [data, setData] = React.useState();
   const [location, setLocation] = React.useState();
   const [places, setPlaces] = React.useState([]);
   const [placeIndex, setPlaceIndex] = React.useState(0);
+  // const [cache, setCache] = React.useState({});
 
-  // Turn this off to disable API mocking
+  React.useEffect(() => {
+    if (!data) {
+      setData(devData);
+    }
+    // if ([places?.[placeIndex]]?.location) {
+    //   return setLocation([places[placeIndex]].location);
+    // }
 
-  const options = {
-    enableHighAccuracy: true,
-    timeout: 5000,
-    maximumAge: 0
-  };
-  const devData = {
-    weather: weather,
-    astro: astro,
-    pollution: pollution,
-    geo: geo
-  };
-  // React.useEffect(() => {
-  //   const success = (pos) => {
-  //     setLocation({
-  //       lat: pos.coords.latitude,
-  //       lon: pos.coords.longitude
-  //     });
-  //   };
+    const success = ({ coords }) => {
+      setLocation(coords);
+    };
 
-  //   const error = (err) => {
-  //     console.warn(`ERROR(${err.code}): ${err.message}`);
-  //   };
-  //   setData(devData);
-  //   dev
-  //     ? // setLocation({ lat: -77.3806798, lon: 38.9196217 })
-  //       success({ coords: { latiutde: -77.3806798, longitude: 38.9196217 } })
-  //     : navigator.geolocation.getCurrentPosition(success, error, options);
-  // }, []);
+    dev
+      ? success({ coords: { latitude: -77.3806798, longitude: 38.9196217 } })
+      : navigator.geolocation.getCurrentPosition(
+          success,
+          console.warn,
+          options
+        );
+  }, []);
 
-  // React.useEffect(() => {
-  //   // console.log(
-  //   //   "getting Data ",
-  //   //   places[placeIndex]?.address || places[placeIndex]
-  //   // );
-  //   if (!location?.lat) return;
-  //   const URLs = {
-  //     weather: `${process.env.REACT_APP_CALL}${process.env.REACT_APP_OPEN_WEATHER_KEY}&lat=${location?.lat}&lon=${location?.lon}`,
-  //     astro: `${process.env.REACT_APP_ASTRO}&lat=${location?.lat}&lon=${location?.lon}`,
-  //     geo: `${process.env.REACT_APP_GEOCODING}${process.env.REACT_APP_OPEN_WEATHER_KEY}&lat=${location?.lat}&lon=${location?.lon}`,
-  //     pollution: `${process.env.REACT_APP_POLLUTION}${process.env.REACT_APP_OPEN_WEATHER_KEY}&lat=${location?.lat}&lon=${location?.lon}`
-  //   };
+  React.useEffect(() => {
+    if (!location?.latitude) return;
+    const URLs = {
+      weather: `${process.env.REACT_APP_CALL}${process.env.REACT_APP_OPEN_WEATHER_KEY}&lat=${location?.latitude}&lon=${location?.longitude}`,
+      astro: `${process.env.REACT_APP_ASTRO}&lat=${location?.latitude}&lon=${location?.longitude}`,
+      geo: `${process.env.REACT_APP_GEOCODING}${process.env.REACT_APP_OPEN_WEATHER_KEY}&lat=${location?.latitude}&lon=${location?.longitude}`,
+      pollution: `${process.env.REACT_APP_POLLUTION}${process.env.REACT_APP_OPEN_WEATHER_KEY}&lat=${location?.latitude}&lon=${location?.longitude}`
+    };
+    let response = {};
+    const getData = async () => {
+      dev
+        ? setData({ ...devData, ...data })
+        : Object.entries(URLs).forEach(async (url) => {
+            console.log(url[1]);
+            const r = await axios.get(url[1]);
+            response[url[0]] = r.data;
+            setData({ ...data, ...response });
+          });
+    };
+    getData();
+  }, [location]);
 
-  //   const getData = () => {
-  //     let response = {};
-  //     !dev
-  //       ? Object.entries(URLs).forEach(async (url) => {
-  //           // console.log(url[1]);
-  //           const r = await axios.get(url[1]);
-  //           response[url[0]] = r.data;
-  //           setData({ ...data, ...response });
-  //         })
-  //       : setData({ ...devData, ...data });
-  //   };
-  //   getData();;
-  //   if (places.length > 0) return;
-  //   const newPlace = {
-  //     address: (
-  //       <>
-  //         <strong>{data?.geo?.[0]?.name}</strong>, {data?.geo?.[0]?.state}
-  //       </>
-  //     ),
-  //     location: location
-  //   };
-  //   console.log(newPlace);
-  //   setPlaces([newPlace]);
-  //   console.log("Places", places);
-  // }, [location, placeIndex]);
+  React.useEffect(() => {
+    if (places.length > 0 || !data?.geo || !location?.latitude) return;
+    const newPlace = {
+      address: (
+        <>
+          <strong>{data?.geo?.[0]?.name},</strong> {data?.geo?.[0]?.state}
+        </>
+      ),
+      location: location
+    };
+    setPlaces([newPlace]);
+  }, [data]);
 
-  // React.useEffect(() => {
-  //   setLocation({
-  //     lat: places?.[placeIndex]?.[1].lat,
-  //     lon: places?.[placeIndex]?.[1].lng
-  //   });
-  // }, [places, placeIndex]);
-
-  // React.useEffect(() => {
-  //   const newPlace = [
-  //     <>
-  //       <strong>{data?.geo?.[0]?.name}</strong>, {data?.geo?.[0]?.state}
-  //     </>,
-  //     { lat: location.lat, lng: location.lon }
-  //   ];
-  //   setPlaces([newPlace, ...places]);
-  // }, [data]);
+  React.useEffect(() => {
+    if (!places[placeIndex]?.location) return;
+    setLocation(places[placeIndex].location);
+    console.log(location);
+  }, [placeIndex]);
 
   return (
     <Router>
@@ -114,6 +103,7 @@ export default function App() {
           setData={setData}
           places={places}
           placeIndex={placeIndex}
+          setPlaceIndex={setPlaceIndex}
         />
         {dev && (
           <div

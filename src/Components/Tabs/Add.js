@@ -52,7 +52,7 @@ const Add = ({ places, setPlaces, setPlaceIndex }) => {
       if (!place?.address_components) return;
       const lat = place.geometry.location.lat();
       const lng = place.geometry.location.lng();
-      const loc = { lat: lat, lng: lng };
+      const loc = { latitude: lat, longitude: lng };
       const newPlace = {
         address: (
           <>
@@ -75,12 +75,10 @@ const Add = ({ places, setPlaces, setPlaceIndex }) => {
       <Input
         value={value}
         ref={inputRef}
-        // autoFocus
+        autoFocus
         onChange={(e) => {
           setValue(e.target.value);
         }}
-        // apiKey={process.env.REACT_APP_GOOGLE_KEY}
-        // onPlaceSelected={(place) => handlePlaceSelect(place)}
         className="Card"
       />
       {places?.length > 0 && (

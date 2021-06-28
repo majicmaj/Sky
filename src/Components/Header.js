@@ -1,11 +1,11 @@
 import styled from "@emotion/styled";
 import React from "react";
-import { Link, useLocation } from "react-router-dom";
-import Place from "./Place";
-import { Column } from "./Shared/Shared";
-import useStickyState from "../Hooks/UseStickyState";
+import { Link } from "react-router-dom";
+// import Place from "./Place";
+// import { Column } from "./Shared/Shared";
+// import useStickyState from "../Hooks/UseStickyState";
 const P = styled(Link)`
-  /* margin: 1rem 0; */
+  margin: 0 0.5rem;
   font-size: 1.25rem;
   color: inherit;
   text-decoration: none;
@@ -26,31 +26,79 @@ const Add = styled.button`
 `;
 
 const HeaderBar = styled.header`
-  display: flex;
-  justify-content: center;
-  align-items: center;
+  /* display: flex;
+  justify-content: space-evenly;
+  align-items: center; */
+  display: grid;
+  grid-template-columns: 1fr auto 1fr;
+  width: max-content;
+  /* border: 1px solid red; */
+  /* margin: 0 auto; */
   padding: 0.5rem;
+  padding-top: 1rem;
+  width: 100%;
+  position: sticky;
+  top: 0;
+  background: var(--card-color);
   > * {
   }
 `;
 
-const Header = ({ places, placeIndex }) => {
+const Dot = styled.button`
+  height: 0.5rem;
+  width: 0.5rem;
+  padding: 0;
+  background: #99999950;
+  border: none;
+  border-radius: 100%;
+  margin: 0.5rem;
+`;
+const DotsBar = styled.div`
+  display: flex;
+  /* border: 1px solid red; */
+`;
+const Header = ({ places, placeIndex, setPlaceIndex }) => {
+  const getDots = (side) => {
+    const dots = [];
+    if (side === "left") {
+      for (let i = 0; i < placeIndex; i++) {
+        dots.push(<Dot />);
+      }
+    } else {
+      for (let i = placeIndex; i < places.length - 1; i++) {
+        dots.push(<Dot onClick={() => setPlaceIndex(i)} />);
+      }
+    }
+    return dots;
+  };
   return (
     <HeaderBar>
-      <div />
+      <DotsBar
+        style={{ justifyContent: "flex-end" }}
+        onClick={() => {
+          if (placeIndex > 0) setPlaceIndex(placeIndex - 1);
+        }}
+      >
+        {getDots("left")}
+      </DotsBar>
       <P to="/Add">
         {places[placeIndex] ? (
-          <>
-            {places[placeIndex].address}
-            {/* <strong>{data?.geo?.[0]?.name}</strong>, {data?.geo?.[0]?.state} */}
-          </>
+          <>{places[placeIndex].address}</>
         ) : (
           <>
             <strong>Herndon</strong>, VA
           </>
         )}
       </P>
-      <Add>{placeIndex}</Add>
+
+      <DotsBar
+        style={{ justifyContent: "flex-start" }}
+        onClick={() => {
+          if (placeIndex < places.length - 1) setPlaceIndex(placeIndex + 1);
+        }}
+      >
+        {getDots("right")}
+      </DotsBar>
     </HeaderBar>
   );
 };

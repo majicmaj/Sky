@@ -1,10 +1,10 @@
-import styled from "@emotion/styled";
+// import styled from "@emotion/styled";
 import React from "react";
-import AirPollution from "../Cards/AirPollution";
-import AtAGlance from "../Cards/AtAGlance";
-import HighLow from "../Cards/HighLow";
-import NegativeStats from "../Cards/NegativeStats";
-import PositiveStats from "../Cards/PositiveStats";
+// import AirPollution from "../Cards/AirPollution";
+// import AtAGlance from "../Cards/AtAGlance";
+// import HighLow from "../Cards/HighLow";
+// import NegativeStats from "../Cards/NegativeStats";
+// import PositiveStats from "../Cards/PositiveStats";
 import Loading from "./Loading";
 import {
   Column,
@@ -22,16 +22,16 @@ const Home = (props) => {
   const data = props?.data?.weather?.current;
   const hourly = props?.data?.weather?.hourly;
   const daily = props?.data?.weather?.daily;
-  const astro = props?.data?.astro?.dataseries?.[0];
-  const pollution = props?.data?.pollution?.list?.[0];
+  // const astro = props?.data?.astro?.dataseries?.[0];
+  // const pollution = props?.data?.pollution?.list?.[0];
   const hourlyItems = [];
   // eslint-disable-next-line no-unused-expressions
   hourly?.slice(1, 25).forEach((hour, i) => {
     const time = new Date(hour.dt * 1000);
     const previous = new Date(time);
     previous.setHours(time.getHours() - 1);
-    let yesterday = previous.toLocaleDateString();
-    const today = time.toLocaleDateString();
+    // let yesterday = previous.toLocaleDateString();
+    // const today = time.toLocaleDateString();
     time.setHours(time.getHours() + 1);
     // if (yesterday !== today || i === 0) {
     //   hourlyItems.push(
@@ -109,7 +109,13 @@ const Home = (props) => {
     <Column>
       <div
         className="Card"
-        style={{ background: "var(--color-primary)", color: "#fff" }}
+        style={{
+          background:
+            data.weather[0].icon.slice(-1) === "d"
+              ? "var(--color-primary)"
+              : "var(--color-primary-dark-gradient)",
+          color: "#fff"
+        }}
         onClick={() => goTo("/Now")}
       >
         <div>

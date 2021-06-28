@@ -11,6 +11,8 @@ body {
   --card-color: #fff;
   --color-primary: #225dff;
   --color-primary-shade: #3b3eff;
+  --color-primary-dark: #0b2042;
+  --color-primary-dark-gradient: #0d1230;
   --color-secondary: #ff6a20;
   --color-secondary-shade: #ff3520;
   --border-radius: 10px;

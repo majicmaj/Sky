@@ -24,7 +24,7 @@ const Place = ({ place, places, setPlaces, setPlaceIndex, i }) => {
   return (
     <Row className="underlined">
       <TextMid onClick={() => setPlaceIndex(i)}>{place.address}</TextMid>
-      <Button onClick={() => deletePlace()}>x</Button>
+      <Button onClick={() => deletePlace()}>×</Button>
     </Row>
   );
 };

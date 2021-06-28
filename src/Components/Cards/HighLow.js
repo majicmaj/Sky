@@ -85,7 +85,7 @@ const HighLow = ({ data, daily, hourly }) => (
         <div>
           <TextMid>Moon</TextMid>
           <div>
-            <Moon value={daily[0]?.moon_phase * 2} />
+            <Moon value={daily[0]?.moon_phase} />
           </div>
           <TextMid>
             <strong>{daily[0]?.moon_phase * 100}%</strong>

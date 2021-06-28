@@ -1,4 +1,4 @@
-import { Column, Progress, Row, SpanSml, TextMid } from "../Shared/Shared";
+import { Progress, Row, SpanSml, TextMid } from "../Shared/Shared";
 
 const PositiveStats = ({ data, astro, pollution }) => (
   <div className="Card">

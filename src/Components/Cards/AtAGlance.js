@@ -1,4 +1,4 @@
-import { Column, Half, Section, TextLrg, TextMid } from "../Shared/Shared";
+import { TextLrg, TextMid } from "../Shared/Shared";
 import { getIcon } from "../../GetIcon.js";
 import styled from "@emotion/styled";
 
