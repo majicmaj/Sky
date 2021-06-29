@@ -1,6 +1,7 @@
 import React from "react";
 import { Redirect, Route, Switch } from "react-router-dom";
 import Add from "./Tabs/Add";
+import Alerts from "./Tabs/Alerts";
 
 const Tab = ({ data, tabs, places, setPlaces, setPlaceIndex }) => {
   return (
@@ -19,6 +20,9 @@ const Tab = ({ data, tabs, places, setPlaces, setPlaceIndex }) => {
           setPlaces={setPlaces}
           setPlaceIndex={setPlaceIndex}
         />
+      </Route>
+      <Route path="/Alerts">
+        <Alerts data={data} />
       </Route>
       <Route path="*">
         <Redirect to={tabs[0][0]} />

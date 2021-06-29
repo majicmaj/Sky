@@ -1,4 +1,5 @@
 import styled from "@emotion/styled";
+import { useHistory } from "react-router-dom";
 import { Row, TextMid } from "./Shared/Shared";
 
 const Button = styled.button`
@@ -21,9 +22,14 @@ const Place = ({ place, places, setPlaces, setPlaceIndex, i }) => {
   const deletePlace = async () => {
     setPlaces(places.filter((p) => p !== place));
   };
+  const history = useHistory();
+  const setPlace = () => {
+    setPlaceIndex(i);
+    history.push("/Home");
+  };
   return (
     <Row className="underlined">
-      <TextMid onClick={() => setPlaceIndex(i)}>{place.address}</TextMid>
+      <TextMid onClick={() => setPlace()}>{place.address}</TextMid>
       <Button onClick={() => deletePlace()}>×</Button>
     </Row>
   );

@@ -45,7 +45,8 @@ const iconDictSmall = {
   high: "https://i.imgur.com/0pjLUo6.png",
   low: "https://i.imgur.com/EI1djFI.png",
   sunrise: "https://i.imgur.com/td5C4TB.png",
-  sunset: "https://i.imgur.com/8yoMV8Z.png"
+  sunset: "https://i.imgur.com/8yoMV8Z.png",
+  alert: "https://i.imgur.com/aFHHyti.png"
 };
 
 export const getIcon = (icon, small = false) => {

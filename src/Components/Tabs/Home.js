@@ -1,10 +1,5 @@
-// import styled from "@emotion/styled";
+import styled from "@emotion/styled";
 import React from "react";
-// import AirPollution from "../Cards/AirPollution";
-// import AtAGlance from "../Cards/AtAGlance";
-// import HighLow from "../Cards/HighLow";
-// import NegativeStats from "../Cards/NegativeStats";
-// import PositiveStats from "../Cards/PositiveStats";
 import Loading from "./Loading";
 import {
   Column,
@@ -16,14 +11,33 @@ import {
   Container
 } from "../Shared/Shared";
 import { getIcon } from "../../GetIcon";
-import { useHistory } from "react-router-dom";
+// import Alert from "../Alerts";
+import { Link } from "react-router-dom";
+
+const StyledLink = styled(Link)`
+  border: 2px solid white;
+  border-radius: 1rem;
+  color: inherit;
+  text-decoration: none;
+  padding: 0.5rem;
+  > img {
+    height: 1rem;
+    width: 1rem;
+    margin-right: 0.5rem;
+  }
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin: 0 auto;
+  max-width: 300px;
+`;
 
 const Home = (props) => {
   const data = props?.data?.weather?.current;
   const hourly = props?.data?.weather?.hourly;
   const daily = props?.data?.weather?.daily;
-  // const astro = props?.data?.astro?.dataseries?.[0];
-  // const pollution = props?.data?.pollution?.list?.[0];
+  const alerts = props?.data?.weather?.alerts;
+
   const hourlyItems = [];
   // eslint-disable-next-line no-unused-expressions
   hourly?.slice(1, 25).forEach((hour, i) => {
@@ -103,8 +117,12 @@ const Home = (props) => {
     });
     return <div className="">{items}</div>;
   };
-  const hist = useHistory();
-  const goTo = (target) => hist.push(target);
+  const AlertsLink = () => (
+    <StyledLink to="/Alerts">
+      <img src={getIcon("alert", true)} />
+      <strong>ALERTS</strong>
+    </StyledLink>
+  );
   return data ? (
     <Column>
       <div
@@ -116,7 +134,6 @@ const Home = (props) => {
               : "var(--color-primary-dark-gradient)",
           color: "#fff"
         }}
-        onClick={() => goTo("/Now")}
       >
         <div>
           <img
@@ -134,14 +151,15 @@ const Home = (props) => {
           <TextLrg style={{ marginBottom: "1rem" }}>
             {Math.round(data.temp)}°
           </TextLrg>
+          {alerts && <AlertsLink />}
         </div>
       </div>
-      <div className="Card" onClick={() => goTo("/Hourly")}>
+      <div className="Card">
         <StatsScroll>
           <Container>{hourlyItems}</Container>
         </StatsScroll>
       </div>
-      <div className="Card" onClick={() => goTo("/Daily")}>
+      <div className="Card">
         <Daily />
       </div>
     </Column>
