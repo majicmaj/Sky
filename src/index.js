@@ -1,6 +1,6 @@
 import { StrictMode } from "react";
-import * as ServiceWorker from "./ServiceWorker";
 import ReactDOM from "react-dom";
+import * as serviceWorker from "./serviceWorker";
 
 import App from "./App";
 
@@ -11,4 +11,5 @@ ReactDOM.render(
   </StrictMode>,
   rootElement
 );
-ServiceWorker.register();
+
+serviceWorker.register();
