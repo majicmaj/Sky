@@ -120,7 +120,7 @@ const Home = (props) => {
   const AlertsLink = () => (
     <StyledLink to="/Alerts">
       <img src={getIcon("alert", true)} />
-      <strong>ALERTS</strong>
+      <strong>{alerts[0].event || "Alerts"}</strong>
     </StyledLink>
   );
   return data ? (
